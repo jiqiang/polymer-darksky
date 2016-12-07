@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`darksky-time-machine`
+Polymer web component for Dark Sky time machine API
+
+@demo demo/index.html
+-->
+
+<dom-module id="darksky-time-machine">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'darksky-time-machine',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'darksky-time-machine',
+        },
+      },
+
+    });
+  </script>
+</dom-module>

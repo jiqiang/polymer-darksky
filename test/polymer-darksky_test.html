@@ -12,17 +12,28 @@
     <link rel="import" href="../polymer-darksky.html">
   </head>
   <body>
-    <test-fixture id="basic">
+    <test-fixture id="darksky_forecast">
       <template>
         <darksky-forecast></darksky-forecast>
       </template>
     </test-fixture>
 
+    <test-fixture id="darksky_time_machine">
+      <template>
+        <darksky-time-machine></darksky-time-machine>
+      </template>
+    </test-fixture>
+
     <script>
       suite('polymer-darksky', function() {
-        test('instantiating the element works', function() {
-          var element = fixture('basic');
+        test('instantiating the darksky-forecast element works', function() {
+          var element = fixture('darksky_forecast');
           assert.equal(element.is, 'darksky-forecast');
+        });
+
+        test('instantiating the darksky-time-machine element works', function() {
+          var element = fixture('darksky_time_machine');
+          assert.equal(element.is, 'darksky-time-machine');
         });
       });
     </script>

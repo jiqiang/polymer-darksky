@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
 
 <!--
 `darksky-forecast`
@@ -9,12 +10,14 @@ Polymer web component for Dark Sky forecast API
 
 <dom-module id="darksky-forecast">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]</h2>
+    <iron-ajax
+      id="iron_ajax"
+      auto="[[auto]]"
+      handle-as="json"
+      loading="{{loading}}"
+      url="[[_computeUrl(apiKey, latitude, longitude)]]"
+      last-response="{{response}}">
+    </iron-ajax>
   </template>
 
   <script>
@@ -23,11 +26,42 @@ Polymer web component for Dark Sky forecast API
       is: 'darksky-forecast',
 
       properties: {
-        prop1: {
+        apiKey: {
           type: String,
-          value: 'darksky-forecast',
+          value: ''
         },
+
+        latitude: {
+          type: String,
+          value: ''
+        },
+
+        longitude: {
+          type: String,
+          value: ''
+        },
+
+        auto: {
+          type: Boolean,
+          value: false
+        },
+
+        loading: {
+          type: Boolean,
+          notify: true,
+          readOnly: true
+        },
+
+        response: {
+          type: Object,
+          notify: true,
+          readOnly: true
+        }
       },
+
+      _computeUrl: function(apiKey, latitude, longitude) {
+        return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude;
+      }
 
     });
   </script>

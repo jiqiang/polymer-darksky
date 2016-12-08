@@ -26,20 +26,29 @@ Polymer web component for Dark Sky forecast API
       is: 'darksky-forecast',
 
       properties: {
-        apiKey: {
-          type: String,
-          value: ''
-        },
 
-        latitude: {
-          type: String,
-          value: ''
-        },
+        /**
+         * Dark Sky API key. (Required)
+         *
+         * Get this from https://darksky.net/dev/account
+         *
+         * It looks like this: '0c91dff60f9a0f4f3328d39ee828341a'
+         */
+        apiKey: String,
 
-        longitude: {
-          type: String,
-          value: ''
-        },
+        /**
+         * The latitude of a geolocation. (Required)
+         *
+         * e.g 37.8267
+         */
+        latitude: Number,
+
+        /**
+         * The longitude of a geolocation. (Required)
+         *
+         * e.g -122.4233
+         */
+        longitude: Number,
 
         auto: {
           type: Boolean,
@@ -60,7 +69,7 @@ Polymer web component for Dark Sky forecast API
       },
 
       _computeUrl: function(apiKey, latitude, longitude) {
-        return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude;
+        return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude.toString() + "," + longitude.toString();
       }
 
     });

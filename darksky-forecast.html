@@ -14,7 +14,8 @@ Example:
       longitude="-122.4233"
       exclude='["minutely","daily"]'
       extend-hourly
-      lang="zh">
+      lang="zh"
+      units="ca">
     <darksky-forecast>
 
 @demo demo/index.html
@@ -28,7 +29,7 @@ Example:
       handle-as="json"
       loading="{{loading}}"
       url="[[_computeUrl(apiKey, latitude, longitude)]]"
-      params="[[_computeParams(exclude, extendHourly, lang)]]"
+      params="[[_computeParams(exclude, extendHourly, lang, units)]]"
       last-response="{{rawResponse}}">
     </iron-ajax>
   </template>
@@ -87,9 +88,18 @@ Example:
          *
          * Find available languages through https://darksky.net/dev/docs/forecast
          *
-         * e.g lang=zh
+         * e.g lang="zh"
          */
         lang: String,
+
+        /**
+         * Return weather conditions in the requested units. (Optional)
+         *
+         * Find available unites through https://darksky.net/dev/docs/forecast
+         *
+         * e.g units="auto"
+         */
+        units: String,
 
         auto: {
           type: Boolean,
@@ -113,7 +123,7 @@ Example:
         return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude;
       },
 
-      _computeParams: function(exclude, extendHourly, lang) {
+      _computeParams: function(exclude, extendHourly, lang, units) {
         var params = {};
 
         if (exclude) {
@@ -126,6 +136,10 @@ Example:
 
         if (lang) {
           params.lang = lang;
+        }
+
+        if (units) {
+          params.units = units
         }
 
         return params;

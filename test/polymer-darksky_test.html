@@ -42,11 +42,12 @@
         });
 
         test('params is constructed correctly', function() {
-          var params = element._computeParams(['minutely','hourly'], true, 'zh');
+          var params = element._computeParams(['minutely','hourly'], true, 'zh', 'ca');
           assert.deepEqual(params, {
             exclude: 'minutely,hourly',
             extend: 'hourly',
-            lang: 'zh'
+            lang: 'zh',
+            units: 'ca'
           });
         });
       });

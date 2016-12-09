@@ -5,6 +5,16 @@
 `darksky-forecast`
 Polymer web component for Dark Sky forecast API
 
+Example:
+
+    <darksky-forecast
+      auto
+      api-key="0c91dff60f9a0f4f3328d39ee828341a"
+      latitude="37.8267"
+      longitude="-122.4233"
+      exclude='["hourly","daily"]'>
+    <darksky-forecast>
+
 @demo demo/index.html
 -->
 
@@ -16,7 +26,7 @@ Polymer web component for Dark Sky forecast API
       handle-as="json"
       loading="{{loading}}"
       url="[[_computeUrl(apiKey, latitude, longitude)]]"
-      last-response="{{response}}">
+      last-response="{{rawResponse}}">
     </iron-ajax>
   </template>
 
@@ -32,23 +42,34 @@ Polymer web component for Dark Sky forecast API
          *
          * Get this from https://darksky.net/dev/account
          *
-         * It looks like this: '0c91dff60f9a0f4f3328d39ee828341a'
+         * e.g api-key="0c91dff60f9a0f4f3328d39ee828341a"
          */
         apiKey: String,
 
         /**
          * The latitude of a geolocation. (Required)
          *
-         * e.g 37.8267
+         * e.g latitude="37.8267"
          */
-        latitude: Number,
+        latitude: String,
 
         /**
          * The longitude of a geolocation. (Required)
          *
-         * e.g -122.4233
+         * e.g longitude="-122.4233"
          */
-        longitude: Number,
+        longitude: String,
+
+        /**
+         * Exclude some number of data blocks from the API response. (Optional)
+         *
+         * Only following values can be used:
+         *
+         * currently | minutely | hourly | daily | alerts | flags
+         *
+         * e.g exclude='["hourly","daily"]'
+         */
+        exclude: Array,
 
         auto: {
           type: Boolean,
@@ -61,7 +82,7 @@ Polymer web component for Dark Sky forecast API
           readOnly: true
         },
 
-        response: {
+        _rawResponse: {
           type: Object,
           notify: true,
           readOnly: true

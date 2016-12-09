@@ -7,7 +7,7 @@
     <title>polymer-darksky demo</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-
+    <link rel="import" href="../../polymer/polymer.html">
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../polymer-darksky.html">
@@ -16,29 +16,27 @@
     </style>
   </head>
   <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic polymer-darksky demo</h3>
-      <demo-snippet>
-        <template>
-          <darksky-forecast
-            auto
-            api-key="0c91dff60f9a0f4f2628d39ee828341a"
-            latitude="-37.817348"
-            longitude="144.965108"
-            exclude='["minutely"]'
-            extend-hourly
-            lang="zh"
-            units="ca"
-            response="{{response}}">
-          </darksky-forecast>
-        </template>
-      </demo-snippet>
+    <template id="demo" is="dom-bind">
+      <div class="vertical-section-container centered">
+        <h3>Basic polymer-darksky demo</h3>
+        <darksky-forecast
+          auto
+          api-key="0c91dff60f9a0f4f2628d39ee828341a"
+          latitude="-37.817348"
+          longitude="144.965108"
+          exclude='["minutely"]'
+          extend-hourly
+          lang="en"
+          units="ca"
+          response="{{_response}}">
+        </darksky-forecast>
+        <p>{{_response.currently.summary}}</p>
 
-      <demo-snippet>
-        <template>
-          <darksky-time-machine ></darksky-time-machine>
-        </template>
-      </demo-snippet>
-    </div>
+
+
+        <darksky-time-machine ></darksky-time-machine>
+
+      </div>
+    </template>
   </body>
 </html>

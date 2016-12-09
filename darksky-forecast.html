@@ -12,7 +12,9 @@ Example:
       api-key="0c91dff60f9a0f4f3328d39ee828341a"
       latitude="37.8267"
       longitude="-122.4233"
-      exclude='["hourly","daily"]'>
+      exclude='["hourly","daily"]'
+      extendHourly
+      lang="zh">
     <darksky-forecast>
 
 @demo demo/index.html
@@ -26,7 +28,7 @@ Example:
       handle-as="json"
       loading="{{loading}}"
       url="[[_computeUrl(apiKey, latitude, longitude)]]"
-      params="[[_computeParams(exclude, extendHourly)]]"
+      params="[[_computeParams(exclude, extendHourly, lang)]]"
       last-response="{{rawResponse}}">
     </iron-ajax>
   </template>
@@ -80,6 +82,15 @@ Example:
           value: false
         },
 
+        /**
+         * Return summary properties in the desired language. (Optional)
+         *
+         * Find available languages through https://darksky.net/dev/docs/forecast
+         *
+         * e.g lang=zh
+         */
+        lang: String,
+
         auto: {
           type: Boolean,
           value: false
@@ -102,7 +113,7 @@ Example:
         return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude;
       },
 
-      _computeParams: function(exclude, extendHourly) {
+      _computeParams: function(exclude, extendHourly, lang) {
         var params = {};
 
         if (exclude) {
@@ -111,6 +122,10 @@ Example:
 
         if (extendHourly) {
           params.extend = "hourly";
+        }
+
+        if (lang) {
+          params.lang = lang;
         }
 
         return params;

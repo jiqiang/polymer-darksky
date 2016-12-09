@@ -20,14 +20,20 @@
       <h3>Basic polymer-darksky demo</h3>
       <demo-snippet>
         <template>
-          <darksky-forecast 
-            auto 
+          <darksky-forecast
+            auto
             api-key="0c91dff60f9a0f4f2628d39ee828341a"
             latitude="37.8267"
-            longitude="-122.4233">
+            longitude="-122.4233"
+            exclude='["minutely","daily"]'
+            extend-hourly>
           </darksky-forecast>
+        </template>
+      </demo-snippet>
 
-          <darksky-time-machine></darksky-time-machine>
+      <demo-snippet>
+        <template>
+          <darksky-time-machine ></darksky-time-machine>
         </template>
       </demo-snippet>
     </div>

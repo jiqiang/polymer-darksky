@@ -26,6 +26,7 @@ Example:
       handle-as="json"
       loading="{{loading}}"
       url="[[_computeUrl(apiKey, latitude, longitude)]]"
+      params="[[_computeParams(exclude, extendHourly)]]"
       last-response="{{rawResponse}}">
     </iron-ajax>
   </template>
@@ -71,6 +72,14 @@ Example:
          */
         exclude: Array,
 
+        /**
+         * Return hour-by-hour data for the next 168 hours, instead of the next 48. (Optional)
+         */
+        extendHourly: {
+          type: Boolean,
+          value: false
+        },
+
         auto: {
           type: Boolean,
           value: false
@@ -90,7 +99,21 @@ Example:
       },
 
       _computeUrl: function(apiKey, latitude, longitude) {
-        return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude.toString() + "," + longitude.toString();
+        return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude;
+      },
+
+      _computeParams: function(exclude, extendHourly) {
+        var params = {};
+
+        if (exclude) {
+          params.exclude = exclude.join(',');
+        }
+
+        if (extendHourly) {
+          params.extend = "hourly";
+        }
+
+        return params;
       }
 
     });

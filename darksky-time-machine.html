@@ -4,6 +4,20 @@
 `darksky-time-machine`
 Polymer web component for Dark Sky time machine API
 
+Example:
+
+    <darksky-forecast
+      auto
+      api-key="0c91dff60f9a0f4f3328d39ee828341a"
+      latitude="37.8267"
+      longitude="-122.4233"
+      time="409467600"
+      exclude='["minutely","daily"]'
+      extend-hourly
+      lang="zh"
+      units="ca">
+    <darksky-forecast>
+
 @demo demo/index.html
 -->
 
@@ -15,7 +29,7 @@ Polymer web component for Dark Sky time machine API
       handle-as="json"
       loading="{{loading}}"
       url="[[_computeUrl(apiKey, latitude, longitude, time)]]"
-      params="[[_computeParams(exclude, extendHourly, lang, units)]]"
+      params="[[_computeParams(exclude, lang, units)]]"
       last-response="{{response}}">
     </iron-ajax>
   </template>

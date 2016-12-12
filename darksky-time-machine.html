@@ -9,11 +9,15 @@ Polymer web component for Dark Sky time machine API
 
 <dom-module id="darksky-time-machine">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+    <iron-ajax
+      id="darksky_time_machine_api"
+      auto="[[auto]]"
+      handle-as="json"
+      loading="{{loading}}"
+      url="[[_computeUrl(apiKey, latitude, longitude, time)]]"
+      params="[[_computeParams(exclude, extendHourly, lang, units)]]"
+      last-response="{{response}}">
+    </iron-ajax>
   </template>
 
   <script>
@@ -22,11 +26,105 @@ Polymer web component for Dark Sky time machine API
       is: 'darksky-time-machine',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'darksky-time-machine',
+        /**
+         * Dark Sky API key. (Required)
+         *
+         * Get this from https://darksky.net/dev/account
+         *
+         * e.g api-key="0c91dff60f9a0f4f3328d39ee828341a"
+         */
+        apiKey: String,
+
+        /**
+         * The latitude of a geolocation. (Required)
+         *
+         * e.g latitude="37.8267"
+         */
+        latitude: String,
+
+        /**
+         * The longitude of a geolocation. (Required)
+         *
+         * e.g longitude="-122.4233"
+         */
+        longitude: String,
+
+        /**
+         * UNIX time (Required)
+         *
+         * Seconds since midnight GMT on 1 Jan 1970
+         *
+         * e.g time="409467600"
+         */
+        time: String,
+
+        /**
+         * Exclude some number of data blocks from the API response. (Optional)
+         *
+         * Only following values can be used:
+         *
+         * currently | minutely | hourly | daily | alerts | flags
+         *
+         * e.g exclude='["hourly","daily"]'
+         */
+        exclude: Array,
+
+        /**
+         * Return summary properties in the desired language. (Optional)
+         *
+         * Find available languages through https://darksky.net/dev/docs/forecast
+         *
+         * e.g lang="zh"
+         */
+        lang: String,
+
+        /**
+         * Return weather conditions in the requested units. (Optional)
+         *
+         * Find available unites through https://darksky.net/dev/docs/forecast
+         *
+         * e.g units="auto"
+         */
+        units: String,
+
+        auto: {
+          type: Boolean,
+          value: false
         },
+
+        loading: {
+          type: Boolean,
+          notify: true,
+          readOnly: true
+        },
+
+        response: {
+          type: Object,
+          notify: true
+        }
       },
+
+      _computeUrl: function(apiKey, latitude, longitude, time) {
+        return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude + "," + time;
+      },
+
+      _computeParams: function(exclude, lang, units) {
+        var params = {};
+
+        if (exclude) {
+          params.exclude = exclude.join(',');
+        }
+
+        if (lang) {
+          params.lang = lang;
+        }
+
+        if (units) {
+          params.units = units
+        }
+
+        return params;
+      }
 
     });
   </script>

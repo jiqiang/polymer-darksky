@@ -62,6 +62,20 @@
         test('instantiating the darksky-time-machine element works', function() {
           assert.equal(element.is, 'darksky-time-machine');
         });
+
+        test('api url is constructed correctly', function() {
+          var url = element._computeUrl('0c91dff60f9a0f4f2628d39ee828341a', '37.8267', '-122.4233', '409467600');
+          assert.equal(url, 'https://api.darksky.net/forecast/0c91dff60f9a0f4f2628d39ee828341a/37.8267,-122.4233,409467600');
+        });
+
+        test('params is constructed correctly', function() {
+          var params = element._computeParams(['minutely','hourly'], 'zh', 'ca');
+          assert.deepEqual(params, {
+            exclude: 'minutely,hourly',
+            lang: 'zh',
+            units: 'ca'
+          });
+        });
       });
     </script>
   </body>

@@ -39,3 +39,10 @@ and
   response="{{_tmResponse}}">
 </darksky-time-machine>
 ```
+
+## Document and Demo
+
+```
+$ cd polymer-darksky
+$ polymer serve --open
+```

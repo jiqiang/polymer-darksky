@@ -4,7 +4,9 @@ Polymer web components for Dark Sky API
 
 ## Installation
 
+```
 bower install --save polymer-darksky
+```
 
 ## Usage
 
@@ -22,7 +24,7 @@ bower install --save polymer-darksky
 </darksky-forecast>
 ```
 
-or
+and
 
 ```
 <darksky-time-machine

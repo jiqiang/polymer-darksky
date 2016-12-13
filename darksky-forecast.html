@@ -24,7 +24,7 @@ Example:
 <dom-module id="darksky-forecast">
   <template>
     <iron-ajax
-      id="iron_ajax"
+      id="darksky_forecast_api"
       auto="[[auto]]"
       handle-as="json"
       loading="{{loading}}"
@@ -142,6 +142,10 @@ Example:
         }
 
         return params;
+      },
+
+      generateRequest: function() {
+        this.$.darksky_forecast_api.generateRequest();
       }
 
     });

@@ -50,6 +50,12 @@
             units: 'ca'
           });
         });
+
+        test('generateRequest method invokes iron ajax generateRequest method', function() {
+          sinon.spy(element.$.darksky_forecast_api, "generateRequest");
+          element.generateRequest();
+          assert(element.$.darksky_forecast_api.generateRequest.calledOnce);
+        });
       });
 
       suite('darksky-time-machine', function() {
@@ -75,6 +81,12 @@
             lang: 'zh',
             units: 'ca'
           });
+        });
+
+        test('generateRequest method invokes iron ajax generateRequest method', function() {
+          sinon.spy(element.$.darksky_time_machine_api, "generateRequest");
+          element.generateRequest();
+          assert(element.$.darksky_time_machine_api.generateRequest.calledOnce);
         });
       });
     </script>

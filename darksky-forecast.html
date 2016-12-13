@@ -30,7 +30,8 @@ Example:
       loading="{{loading}}"
       url="[[_computeUrl(apiKey, latitude, longitude)]]"
       params="[[_computeParams(exclude, extendHourly, lang, units)]]"
-      last-response="{{response}}">
+      last-response="{{response}}"
+      last-error="{{error}}">
     </iron-ajax>
   </template>
 
@@ -113,6 +114,11 @@ Example:
         },
 
         response: {
+          type: Object,
+          notify: true
+        },
+
+        error: {
           type: Object,
           notify: true
         }

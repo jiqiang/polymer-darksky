@@ -1,38 +1,39 @@
-# \<polymer-darksky\>
+# Polymer Darksky
 
 Polymer web components for Dark Sky API
 
-## Install the Polymer-CLI
+## Installation
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
+bower install --save polymer-darksky
 
-## Viewing Your Application
-
-```
-$ polymer serve
-```
-
-## Building Your Application
+## Usage
 
 ```
-$ polymer build
+<darksky-forecast
+  auto
+  api-key="0c91dff60f9a0f4f2628d39ee828341a"
+  latitude="-37.817348"
+  longitude="144.965108"
+  exclude='["minutely","hourly","daily","flags"]'
+  extend-hourly
+  lang="en"
+  units="ca"
+  response="{{_fcResponse}}">
+</darksky-forecast>
 ```
 
-This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
-containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
-CSS, and JS optimizers.
-
-You can serve the built versions by giving `polymer serve` a folder to serve
-from:
+or
 
 ```
-$ polymer serve build/bundled
+<darksky-time-machine
+  auto
+  api-key="0c91dff60f9a0f4f2628d39ee828341a"
+  latitude="-37.817348"
+  longitude="144.965108"
+  time="409467600"
+  exclude='["minutely","hourly","daily","flags"]'
+  lang="en"
+  units="ca"
+  response="{{_tmResponse}}">
+</darksky-time-machine>
 ```
-
-## Running Tests
-
-```
-$ polymer test
-```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.

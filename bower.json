@@ -11,5 +11,22 @@
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
     "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
-  }
+  },
+  "authors": [
+    {
+      "name": "Qiang (Glenn) Ji",
+      "email": "qiang.j@gmail.com>"
+    }
+  ],
+  "keywords": [
+    "polymer"
+    "dark",
+    "sky",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jiqiang/polymer-darksky.git"
+  },
+  "license": "MIT"
 }

@@ -44,5 +44,6 @@ and
 
 ```
 $ cd polymer-darksky
+$ bower install
 $ polymer serve --open
 ```
